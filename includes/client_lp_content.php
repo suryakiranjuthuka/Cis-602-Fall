@@ -34,6 +34,7 @@ class ClientLpContent extends DatabaseObject{
 	public function create_c_lp_content_info(){
 		global $database;
 		$clientlp_id = $database->escape_value($this->clientlp_id);
+		$salesrep_id = $database->escape_value($this->salesrep_id);
 		$title = $database->escape_value($this->title);
 		$content_header = $database->escape_value($this->content_header);
 		$content = $database->escape_value($this->content);
@@ -46,7 +47,7 @@ class ClientLpContent extends DatabaseObject{
 		$footer = $database->escape_value($this->footer);
 		
 		
-		$sql="INSERT INTO clientlp_content (clientlp_id, title, content_header, content, box1_header, box1_content, box2_header, box2_content, box3_header, box3_content, footer) VALUES ('{$clientlp_id}', '{$title}', '{$content_header}', '{$content}', '{$box1_header}', '{$box1_content}', '{$box2_header}', '{$box2_content}', '{$box3_header}', '{$box3_content}', '{$footer}')";
+		$sql="INSERT INTO clientlp_content (clientlp_id, salesrep_id, title, content_header, content, box1_header, box1_content, box2_header, box2_content, box3_header, box3_content, footer) VALUES ('{$clientlp_id}', '{$salesrep_id}', '{$title}', '{$content_header}', '{$content}', '{$box1_header}', '{$box1_content}', '{$box2_header}', '{$box2_content}', '{$box3_header}', '{$box3_content}', '{$footer}')";
 		
 		if($database->query($sql)){
 			return $database->insert_id();	

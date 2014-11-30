@@ -81,7 +81,7 @@ require_once("../../includes/initialize.php");
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
               <a href="info_template1.php"><button class="selectButton" language="javascript" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" ><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
-              <a href="" target="_blank"><div class="viewButton">VIEW</div></a>
+              <a href="sample_template1.php" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
      </div><!-- END of CLIENT LP Container-->
 	
@@ -99,7 +99,7 @@ require_once("../../includes/initialize.php");
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
               <a href="info_template2.php"><button class="selectButton" language="javascript" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" ><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
-              <a href="" target="_blank"><div class="viewButton">VIEW</div></a>
+              <a href="sample_template2.php" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
      </div><!-- END of CLIENT LP Container-->
 	
@@ -118,7 +118,7 @@ require_once("../../includes/initialize.php");
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
               <a href="info_template3.php"><button class="selectButton" language="javascript" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" ><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
-              <a href="" target="_blank"><div class="viewButton">VIEW</div></a>
+              <a href="sample_template3.php" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
      </div><!-- END of CLIENT LP Container-->
 	
