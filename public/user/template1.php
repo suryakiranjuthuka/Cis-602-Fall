@@ -4,28 +4,206 @@ require_once("../../includes/initialize.php");
 
 
 $current_clp_content = ClientLpContent::find_by_id(trim($_GET['main_clientlp_edit_id']));
+$mcei = $_GET['main_clientlp_edit_id'];
 
-$current_user = SalesRep::find_by_id($_SESSION['info_sales_rep_id']);
+//$current_user = SalesRep::find_by_id(1);
+$current_clientlp = ClientLp::find_by_id($current_clp_content->clientlp_id);
 
 
-//********** Hide p_e Template Info **************
-if(isset($_GET['p_e_id'])){
-	
-	$p_e_id = trim($_GET['p_e_id']);
-	$current_user_id = trim($_GET['current_user_id']);
-	$p_e_hide = trim($_GET['p_e_hide']);
-	
-	$hidden = PlumEmail::hide_p_e_template_info($p_e_id, $current_user_id, $p_e_hide);
-	
-	//Verifying if information is hidden
-	if($hidden){
-		$session->message("<span class='boldCreamColor'>Plum Emails Template Info</span> <span class='bold'> Successfully HIDDEN.</span>");
-		redirect_to("user.php");
-	} else{
-		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> HIDE</span> <span class='boldCreamColor'> Plum Emails Template Info.</span>");
-		redirect_to("user.php");
+if(isset($_POST['submitDesignPopup'])){
+	if($_POST['completereview'] == complete){
+		$current_clp_content->complete = 1;
+	}else {
+		$current_clp_content->complete = 0;
 	}
+		
+	if($_POST['completereview'] == review){
+		$current_clp_content->review = 1;
+	}else{
+		$current_clp_content->review = 0;
+	}
+	
+//	$current_clp_content->time_created;
+	$current_clientlp->salesrep_id = $current_clp_content->temp_salesrep_id;
+	$current_clp_content->salesrep_id = $current_clp_content->temp_salesrep_id;
+	
+	$current_clientlp->t_o_c = $current_clp_content->count;
+	$current_clientlp->leads = $current_clientlp->id;
+	
+	$sucess_c_lp_content = $current_clp_content->update_c_lp_content_info();
+	$sucess_c_lp = $current_clientlp->update_c_lp_template_info();
+//	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
 }
+
+
+if(isset($_POST['form1'])){
+	if(isset($_POST['title'])){
+		$current_clp_content->title = trim($_POST['title']);
+	}
+	$current_clp_content->count = $current_clp_content->count + 1;
+	$provanance = "Title";
+	
+	if($current_clp_content->count == 1){
+		$current_clp_content->one = $provanance;
+	}if($current_clp_content->count == 2){
+		$current_clp_content->two = $provanance;
+	}if($current_clp_content->count == 3){
+		$current_clp_content->three = $provanance;
+	}if($current_clp_content->count == 4){
+		$current_clp_content->four = $provanance;
+	}if($current_clp_content->count == 5){
+		$current_clp_content->five = $provanance;
+	}if($current_clp_content->count == 6){
+		$current_clp_content->six = $provanance;
+	}
+	
+	$sucess_c_lp = $current_clp_content->update_c_lp_content_info();
+	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+}
+
+
+if(isset($_POST['form2'])){
+	if(isset($_POST['content_header'])){
+		$current_clp_content->content_header = trim($_POST['content_header']);
+	}
+	if(isset($_POST['content'])){
+		$current_clp_content->content = trim($_POST['content']);
+	}
+	$current_clp_content->count = $current_clp_content->count + 1;
+	$provanance = "Content";
+	
+	if($current_clp_content->count == 1){
+		$current_clp_content->one = $provanance;
+	}if($current_clp_content->count == 2){
+		$current_clp_content->two = $provanance;
+	}if($current_clp_content->count == 3){
+		$current_clp_content->three = $provanance;
+	}if($current_clp_content->count == 4){
+		$current_clp_content->four = $provanance;
+	}if($current_clp_content->count == 5){
+		$current_clp_content->five = $provanance;
+	}if($current_clp_content->count == 6){
+		$current_clp_content->six = $provanance;
+	}
+	
+	$sucess_c_lp = $current_clp_content->update_c_lp_content_info();
+	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+}
+
+
+if(isset($_POST['form3'])){
+	if(isset($_POST['box1_header'])){
+		$current_clp_content->box1_header = trim($_POST['box1_header']);
+	}
+	if(isset($_POST['box1_content'])){
+		$current_clp_content->box1_content = trim($_POST['box1_content']);
+	}
+	$current_clp_content->count = $current_clp_content->count + 1;
+	$provanance = "Box-1";
+	
+	if($current_clp_content->count == 1){
+		$current_clp_content->one = $provanance;
+	}if($current_clp_content->count == 2){
+		$current_clp_content->two = $provanance;
+	}if($current_clp_content->count == 3){
+		$current_clp_content->three = $provanance;
+	}if($current_clp_content->count == 4){
+		$current_clp_content->four = $provanance;
+	}if($current_clp_content->count == 5){
+		$current_clp_content->five = $provanance;
+	}if($current_clp_content->count == 6){
+		$current_clp_content->six = $provanance;
+	}
+	
+	$sucess_c_lp = $current_clp_content->update_c_lp_content_info();
+	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+}
+
+
+if(isset($_POST['form4'])){
+	if(isset($_POST['box2_header'])){
+		$current_clp_content->box2_header = trim($_POST['box2_header']);
+	}
+	if(isset($_POST['box2_content'])){
+		$current_clp_content->box2_content = trim($_POST['box2_content']);
+	}
+	$current_clp_content->count = $current_clp_content->count + 1;
+	$provanance = "Box-2";
+	
+	if($current_clp_content->count == 1){
+		$current_clp_content->one = $provanance;
+	}if($current_clp_content->count == 2){
+		$current_clp_content->two = $provanance;
+	}if($current_clp_content->count == 3){
+		$current_clp_content->three = $provanance;
+	}if($current_clp_content->count == 4){
+		$current_clp_content->four = $provanance;
+	}if($current_clp_content->count == 5){
+		$current_clp_content->five = $provanance;
+	}if($current_clp_content->count == 6){
+		$current_clp_content->six = $provanance;
+	}
+	
+	$sucess_c_lp = $current_clp_content->update_c_lp_content_info();
+	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+}
+
+
+if(isset($_POST['form5'])){
+	if(isset($_POST['box3_header'])){
+		$current_clp_content->box3_header = trim($_POST['box3_header']);
+	}
+	if(isset($_POST['box3_content'])){
+		$current_clp_content->box3_content = trim($_POST['box3_content']);
+	}
+	$current_clp_content->count = $current_clp_content->count + 1;
+	$provanance = "Box-3";
+	
+	if($current_clp_content->count == 1){
+		$current_clp_content->one = $provanance;
+	}if($current_clp_content->count == 2){
+		$current_clp_content->two = $provanance;
+	}if($current_clp_content->count == 3){
+		$current_clp_content->three = $provanance;
+	}if($current_clp_content->count == 4){
+		$current_clp_content->four = $provanance;
+	}if($current_clp_content->count == 5){
+		$current_clp_content->five = $provanance;
+	}if($current_clp_content->count == 6){
+		$current_clp_content->six = $provanance;
+	}
+	
+	$sucess_c_lp = $current_clp_content->update_c_lp_content_info();
+	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+}
+
+
+if(isset($_POST['form6'])){
+	if(isset($_POST['footer'])){
+		$current_clp_content->footer = trim($_POST['footer']);
+	}
+	$current_clp_content->count = $current_clp_content->count + 1;
+	$provanance = "Footer";
+	
+	if($current_clp_content->count == 1){
+		$current_clp_content->one = $provanance;
+	}if($current_clp_content->count == 2){
+		$current_clp_content->two = $provanance;
+	}if($current_clp_content->count == 3){
+		$current_clp_content->three = $provanance;
+	}if($current_clp_content->count == 4){
+		$current_clp_content->four = $provanance;
+	}if($current_clp_content->count == 5){
+		$current_clp_content->five = $provanance;
+	}if($current_clp_content->count == 6){
+		$current_clp_content->six = $provanance;
+	}
+	
+	$sucess_c_lp = $current_clp_content->update_c_lp_content_info();
+	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+}
+
+
 ?>
 
 
@@ -122,19 +300,13 @@ if(isset($_GET['p_e_id'])){
             									<!--********** BEGIN Popup Block********** -->
 		<div class="md-modal md-effect-1" id="finalPopup">
 			<div id="finalPopupContent">
-           			<h2>Fill In Your Personal Informantion</h2>
-                    <form id="finishDesign" method="post" action="template1.php">
-					    <input type="hidden" id="sem_bullet51" name="sem_bullet51" >
-					    <input type="hidden" id="sem_meal_change1" name="sem_meal_change1" >
-					    <textarea style="visibility: hidden; position: absolute; " id="disclaimer1" name="disclaimer1" ></textarea>
-					    <div class="fieldContainerLeft">
-					    <label style="">Agent's First Name</label>
-						<input type="text" name="c_lp_client_firstname1" required>
-						</div>
-						
-						<input style="top:-10px;" type="checkbox" name="client_terms" id="client_terms" value="client_terms">
-						<h3 style="font-weight: bold; margin-top: 10px; margin-bottom: 20px;">*TERMS & CONDITIONS: I have reviewed my page carefully and  understand </br> that any additional changes may incur a fee.</h3>
-						
+           			<h2>Submitting Design</h2>
+                    <form id="finishDesign" method="post" action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>">
+						<h3>Client Name : <?php echo $current_clientlp->client_name; ?></h3>
+						<h3>Client Email : <?php echo $current_clientlp->email; ?></h3>
+
+						<input type="radio" name="completereview" value="review" <?php if($current_clp_content->review == 1){echo " checked";} ?>>Still Reviewing </br>
+						<input type="radio" name="completereview" value="complete" <?php if($current_clp_content->complete == 1){echo " checked";} ?>>Page Completed
 						
 						<div class="loader" id="loader_form"></div><!--LOADER-->
                         <input name="submitDesignPopup" id="submitDesignPopup" type="submit" value="submit"></br>
@@ -143,56 +315,70 @@ if(isset($_GET['p_e_id'])){
 			</div>
 
 
+		
 		<!--This is Content Header & Content tooltip*-->
 		<div id="titleTooltip" style="display:none; padding:10px; width:300px;">
+			<form action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>" method="post">
 			<label>Change Title:</label></br>
-		    	<input type="text" id="form_content_header" value="<?php echo $current_clp_content->title; ?>" style="width:200px"></br>
-		    <button onclick="change_sem_number()">Change</button>
+		    	<input name="title" type="text" id="form_content_header" value="<?php echo $current_clp_content->title; ?>" style="width:200px"></br>
+		    <button name="form1">Change</button>
+			</form>
 		</div>
+		
 
 
 		<!--This is Content Header & Content tooltip*-->
 		<div id="contentTooltip" style="display:none; padding:10px; width:400px;">
+			<form action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>" method="post">
 			<label>Change Content Title:</label></br>
-		    	<input type="text" id="form_content_header" value="<?php echo $current_clp_content->content_header; ?>" style="width:200px"></br>
+		    	<input name="content_header" type="text" id="form_content_header" value="<?php echo $current_clp_content->content_header; ?>" style="width:200px"></br>
 				<label>Change Content:</label></br>
-				<textarea id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->content; ?></textarea></br>
-		    <button onclick="change_sem_number()">Change</button>
+				<textarea name="content" id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->content; ?></textarea></br>
+		    <button name="form2">Change</button>
+			</form>
 		</div>
 
 
 		<!--This is Box1 tooltip*-->
 		<div id="box1Tooltip" style="display:none; padding:10px; width:400px;">
+			<form action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>" method="post">
 			<label>Change Box1 Title:</label></br>
-		    	<input type="text" id="form_content_header" value="<?php echo $current_clp_content->box1_header; ?>" style="width:200px"></br>
+		    	<input name="box1_header" type="text" id="form_content_header" value="<?php echo $current_clp_content->box1_header; ?>" style="width:200px"></br>
 				<label>Change Box1 Content:</label></br>
-				<textarea id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->box1_content; ?></textarea></br>
-		    <button onclick="change_sem_number()">Change</button>
+				<textarea name="box1_content" id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->box1_content; ?></textarea></br>
+		    <button name="form3">Change</button>
+			</form>
 		</div>
 
 		<!--This is Box2 tooltip*-->
 		<div id="box2Tooltip" style="display:none; padding:10px; width:400px;">
+			<form action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>" method="post">
 			<label>Change Box2 Title:</label></br>
-		    	<input type="text" id="form_content_header" value="<?php echo $current_clp_content->box2_header; ?>" style="width:200px"></br>
+		    	<input name="box2_header" type="text" id="form_content_header" value="<?php echo $current_clp_content->box2_header; ?>" style="width:200px"></br>
 				<label>Change Box2 Content:</label></br>
-				<textarea id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->box2_content; ?></textarea></br>
-		    <button onclick="change_sem_number()">Change</button>
+				<textarea name="box2_content" id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->box2_content; ?></textarea></br>
+		    <button name="form4">Change</button>
+			</form>
 		</div>
 
 		<!--This is Box3 tooltip*-->
 		<div id="box3Tooltip" style="display:none; padding:10px; width:400px;">
+			<form action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>" method="post">
 			<label>Change Box3 Title:</label></br>
-		    	<input type="text" id="form_content_header" value="<?php echo $current_clp_content->box3_header; ?>" style="width:200px"></br>
+		    	<input name="box3_header" type="text" id="form_content_header" value="<?php echo $current_clp_content->box3_header; ?>" style="width:200px"></br>
 				<label>Change Box3 Content:</label></br>
-				<textarea id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->box3_content; ?></textarea></br>
-		    <button onclick="change_sem_number()">Change</button>
+				<textarea name="box3_content" id="form_content" style="border:1px solid lightgrey; resize:none; border-radius:9px; padding:3px; width:380px; height:100px;"><?php echo $current_clp_content->box3_content; ?></textarea></br>
+		    <button name="form5">Change</button>
+			</form>
 		</div>
 
 		<!--This is Footer tooltip*-->
 		<div id="footerTooltip" style="display:none; padding:10px; width:300px;">
+			<form action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>" method="post">
 			<label>Footer:</label></br>
-		    	<input type="text" id="form_content_header" value="<?php echo $current_clp_content->footer; ?>" style="width:200px"></br>
-		    <button onclick="change_sem_number()">Change</button>
+		    	<input name="footer" type="text" id="form_content_header" value="<?php echo $current_clp_content->footer; ?>" style="width:200px"></br>
+		    <button name="form6">Change</button>
+			</form>
 		</div>
 
 
@@ -211,198 +397,6 @@ if(isset($_GET['p_e_id'])){
 
 
 
-	function change_bullets(){
-		document.getElementById("bullet_title").innerHTML = document.getElementById("sem_bullet_title_change").value;
-		var bullettitle = document.getElementById("sem_bullet_title_change").value;
-		bullettitle = bullettitle.replace(/'/g, '&#39;');
-		document.getElementById("sem_bullet_title_change1").value = bullettitle;
-		if(document.getElementById("sem_bullet1").value != ""){
-			var bullet1 = document.getElementById("sem_bullet1").value;
-			bullet1 = bullet1.replace(/'/g, '&#39;');
-			document.getElementById("bullet1").innerHTML = "<li>"+document.getElementById("sem_bullet1").value+"</li>";
-			document.getElementById("sem_bullet11").value = "<li>"+bullet1+"</li>";
-			}else{
-			document.getElementById("bullet1").innerHTML = "";
-				}
-		if(document.getElementById("sem_bullet2").value != ""){
-			var bullet2 = document.getElementById("sem_bullet2").value;
-			bullet2 = bullet2.replace(/'/g, '&#39;');
-			document.getElementById("bullet2").innerHTML = "<li>"+document.getElementById("sem_bullet2").value+"</li>";
-			document.getElementById("sem_bullet21").value = "<li>"+bullet2 +"</li>";
-			}else{
-				document.getElementById("bullet2").innerHTML = "";
-				}
-		if(document.getElementById("sem_bullet3").value != ""){
-			var bullet3 = document.getElementById("sem_bullet3").value;
-			bullet3 = bullet3.replace(/'/g, '&#39;');
-			document.getElementById("bullet3").innerHTML = "<li>"+document.getElementById("sem_bullet3").value+"</li>";
-			document.getElementById("sem_bullet31").value = "<li>"+bullet3+"</li>";
-			}else{
-				document.getElementById("bullet3").innerHTML = "";
-				}
-		if(document.getElementById("sem_bullet4").value != ""){
-			var bullet4 = document.getElementById("sem_bullet4").value;
-			bullet4 = bullet4.replace(/'/g, '&#39;');
-			document.getElementById("bullet4").innerHTML = "<li>"+document.getElementById("sem_bullet4").value+"</li>";
-			document.getElementById("sem_bullet41").value = "<li>"+bullet4 +"</li>";
-			}else{
-				document.getElementById("bullet4").innerHTML = "";
-				}
-		if(document.getElementById("sem_bullet5").value != ""){
-			var bullet5 = document.getElementById("sem_bullet5").value;
-			bullet5 = bullet5.replace(/'/g, '&#39;');
-			document.getElementById("bullet5").innerHTML = "<li>"+document.getElementById("sem_bullet5").value+"</li>";
-			document.getElementById("sem_bullet51").value = "<li>"+bullet5+"</li>";
-			}
-			else{
-				document.getElementById("bullet5").innerHTML = "";
-				}
-	}
-
-	function change_sem_bio(){
-		document.getElementById("bio_title").innerHTML = document.getElementById("sem_bio_title_change").value;
-		var biotitle = document.getElementById("sem_bio_title_change").value;
-		biotitle = biotitle.replace(/'/g, '&#39;');
-		document.getElementById("sem_bio_title_change1").value = biotitle;
-		var text = document.getElementById("bio").value;
-		text = text.replace(/\r\n/g, '<br />').replace(/[\r\n]/g, '<br />');
-		text = text.replace(/'/g, '&#39;');
-		document.getElementById("biography").innerHTML = text;
-		document.getElementById("bio1").value = text;		
-	}
-	
-	function change_sem_info(){
-		document.getElementById("adv_name").innerHTML = document.getElementById("sem_name_change").value+" ";
-		document.getElementById("sem_name_change1").value = document.getElementById("sem_name_change").value+" ";
-		
-		var e = document.getElementById("sem_meal_change");
-		var meal = e.options[e.selectedIndex].value;
-         		
-		document.getElementById("meal").innerHTML = meal;
-	    document.getElementById("sem_meal_change1").value = meal;
-		
-		document.getElementById("date_1_day").innerHTML = document.getElementById("sem_date1_day_change").value;;
-		document.getElementById("sem_date1_day_change1").value = document.getElementById("sem_date1_day_change").value;
-		document.getElementById("date_1_date").innerHTML = document.getElementById("sem_date1_date_change").value;
-		document.getElementById("sem_date1_date_change1").value = document.getElementById("sem_date1_date_change").value;
-		document.getElementById("date_1_time").innerHTML = document.getElementById("sem_date1_time_change").value;
-		document.getElementById("sem_date1_time_change1").value = document.getElementById("sem_date1_time_change").value;
-		
-		document.getElementById("date_2_day").innerHTML = document.getElementById("sem_date2_day_change").value;
-		document.getElementById("sem_date2_day_change1").value = document.getElementById("sem_date2_day_change").value;
-		document.getElementById("date_2_date").innerHTML = document.getElementById("sem_date2_date_change").value;
-		document.getElementById("sem_date2_date_change1").value = document.getElementById("sem_date2_date_change").value;
-		document.getElementById("date_2_time").innerHTML = document.getElementById("sem_date2_time_change").value;
-		document.getElementById("sem_date2_time_change1").value = document.getElementById("sem_date2_time_change").value;
-		
-		
-		<?php if($_SESSION['r_two_name1'] == NULL){
-			 echo '
-		document.getElementById("date_3_day").innerHTML = document.getElementById("sem_date3_day_change").value;
-		document.getElementById("sem_date3_day_change1").value = document.getElementById("sem_date3_day_change").value;
-		document.getElementById("date_3_date").innerHTML = document.getElementById("sem_date3_date_change").value;
-		document.getElementById("sem_date3_date_change1").value = document.getElementById("sem_date3_date_change").value;
-		document.getElementById("date_3_time").innerHTML = document.getElementById("sem_date3_time_change").value;
-		document.getElementById("sem_date3_time_change1").value = document.getElementById("sem_date3_time_change").value;';
-		} ?>
-		
-		
-		
-		<?php if($_SESSION['r_logo'] != NULL){
-			 echo 'document.getElementById("rName1").innerHTML = document.getElementById("1rName").value;
-					document.getElementById("sem_location_rName1").value = document.getElementById("1rName").value;';
-		} ?>
-		document.getElementById("street1").innerHTML = document.getElementById("1sem_location_street").value;
-		document.getElementById("sem_location_street1").value = document.getElementById("1sem_location_street").value;
-		document.getElementById("city1").innerHTML = document.getElementById("1sem_location_city").value;
-		document.getElementById("sem_location_city1").value = document.getElementById("1sem_location_city").value;
-		
-		
-		<?php if($_SESSION['r_two_name1'] != NULL){
-			 echo '
-		document.getElementById("street2").innerHTML = document.getElementById("2sem_location_street").value;
-		document.getElementById("sem_location_street2").value = document.getElementById("2sem_location_street").value;
-		document.getElementById("city2").innerHTML = document.getElementById("2sem_location_city").value;
-		document.getElementById("sem_location_city2").value = document.getElementById("2sem_location_city").value;';
-		} ?>
-		
-		
-			if((document.getElementById("sem_date1_day_change").value == "")){
-				document.getElementById("date1").style.display = "none";
-				document.getElementById("original_date1").value = 0 ;
-			}else{
-				document.getElementById("date1").style.display = "inline-block";
-				document.getElementById("original_date1").value = 1 ;
-			}
-			
-			if((document.getElementById("sem_date2_day_change").value == "")){
-				document.getElementById("original_date2").value = 0 ;
-				document.getElementById("date2").style.display = "none";
-			}else{
-				document.getElementById("date2").style.display = "inline-block";
-				document.getElementById("original_date2").value = 1 ;
-			}
-
-
-			if((document.getElementById("sem_date3_date_change").value == "")){
-				document.getElementById("original_date3").value = 0 ;
-				document.getElementById("date3").style.display = "none";
-				document.getElementById("date1").style.paddingLeft = "50px";
-				document.getElementById("date1").style.paddingRight = "50px";
-				document.getElementById("date2").style.paddingLeft = "50px";
-				document.getElementById("date2").style.paddingRight = "50px";	
-			}else{
-				document.getElementById("original_date3").value = 1 ;
-				document.getElementById("date3").style.display = "inline-block";
-				document.getElementById("date1").style.paddingLeft = "5px";
-				document.getElementById("date1").style.paddingRight = "5px";
-				document.getElementById("date2").style.paddingLeft = "5px";
-				document.getElementById("date2").style.paddingRight = "5px";
-			}
-
-
-			
-		   if((document.getElementById("2sem_location_street").value == "")){
-		   		document.getElementById("restaurant2").style.display = "none";
-		   }else{
-		   		document.getElementById("restaurant2").style.display = "inline-block";
-		   }
-	}
-
-	function change_sem_number(){
-		document.getElementById("seminar_number").innerHTML = document.getElementById("sem_num_change").value;
-		document.getElementById("sem_num_change1").value = document.getElementById("sem_num_change").value;
-	}
-	
-	function swapStyleSheet1(sheet){
-		document.getElementById('template_style').setAttribute('href', sheet);
-		document.getElementById('stylesheet').value = 'seminar1_original.css';
-	}
-	function swapStyleSheet2(sheet){
-		document.getElementById('template_style').setAttribute('href', sheet);
-		document.getElementById('stylesheet').value = 'seminar1_blue.css';
-	}
-	function swapStyleSheet3(sheet){
-		document.getElementById('template_style').setAttribute('href', sheet);
-		document.getElementById('stylesheet').value = 'seminar1_gray.css';
-	}
-	function swapStyleSheet4(sheet){
-		document.getElementById('template_style').setAttribute('href', sheet);
-		document.getElementById('stylesheet').value = 'seminar1_red.css';
-	}
-	
-	function disclaimer(){
-		var text3 = document.getElementById("disclaimer").value;
-		text3 = text3.replace(/\r\n/g, '<br />').replace(/[\r\n]/g, '<br />');
-		text3 = text3.replace(/'/g, '&#39;');
-		document.getElementById("disclaimerMain").innerHTML = text3;
-		document.getElementById("disclaimer1").value = text3;			
-	}
-	
-	function kill_disclaimer(){
-	    document.getElementById('optDisEdit').style.display = "none";
-	    document.getElementById('disclaimerMain').style.display = "none";
-	}
 
 	
 	

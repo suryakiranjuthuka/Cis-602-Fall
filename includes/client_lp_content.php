@@ -7,6 +7,7 @@ class ClientLpContent extends DatabaseObject{
 	protected static $table_name="clientlp_content";
 	public $id;
 	public $salesrep_id;
+	public $temp_salesrep_id;
 	public $clientlp_id;
 	public $time_created;
 	public $complete;
@@ -35,6 +36,7 @@ class ClientLpContent extends DatabaseObject{
 		global $database;
 		$clientlp_id = $database->escape_value($this->clientlp_id);
 		$salesrep_id = $database->escape_value($this->salesrep_id);
+		$temp_salesrep_id = $database->escape_value($this->temp_salesrep_id);
 		$title = $database->escape_value($this->title);
 		$content_header = $database->escape_value($this->content_header);
 		$content = $database->escape_value($this->content);
@@ -47,7 +49,7 @@ class ClientLpContent extends DatabaseObject{
 		$footer = $database->escape_value($this->footer);
 		
 		
-		$sql="INSERT INTO clientlp_content (clientlp_id, salesrep_id, title, content_header, content, box1_header, box1_content, box2_header, box2_content, box3_header, box3_content, footer) VALUES ('{$clientlp_id}', '{$salesrep_id}', '{$title}', '{$content_header}', '{$content}', '{$box1_header}', '{$box1_content}', '{$box2_header}', '{$box2_content}', '{$box3_header}', '{$box3_content}', '{$footer}')";
+		$sql="INSERT INTO clientlp_content (clientlp_id, salesrep_id, temp_salesrep_id, title, content_header, content, box1_header, box1_content, box2_header, box2_content, box3_header, box3_content, footer) VALUES ('{$clientlp_id}', '{$salesrep_id}', '{$temp_salesrep_id}', '{$title}', '{$content_header}', '{$content}', '{$box1_header}', '{$box1_content}', '{$box2_header}', '{$box2_content}', '{$box3_header}', '{$box3_content}', '{$footer}')";
 		
 		if($database->query($sql)){
 			return $database->insert_id();	
@@ -58,32 +60,41 @@ class ClientLpContent extends DatabaseObject{
 	
 	
 	
-	public function update_c_lp_template_info(){
+	public function update_c_lp_content_info(){
 		global $database;
-		$client_name = $database->escape_value($this->client_name);
-		$website_url = $database->escape_value($this->website_url);
-		$start_date = $database->escape_value($this->start_date);
-		$expire_date = $database->escape_value($this->expire_date);
-		$email = $database->escape_value($this->email);
-		$notes = $database->escape_value($this->notes);
-		$city = $database->escape_value($this->city);
-		$state = $database->escape_value($this->state);
-		$zip_code = $database->escape_value($this->zip_code);
-		$google_ad = $database->escape_value($this->google_ad);
-		$google_ad_setup = $database->escape_value($this->google_ad_setup);
-		$page_complete = $database->escape_value($this->page_complete);
-		$renewing_page = $database->escape_value($this->renewing_page);
-		$leads = $database->escape_value($this->leads);
-		$id = $database->escape_value($this->id);
+		$clientlp_id = $database->escape_value($this->clientlp_id);
 		$salesrep_id = $database->escape_value($this->salesrep_id);
+		$temp_salesrep_id = $database->escape_value($this->temp_salesrep_id);
+		$title = $database->escape_value($this->title);
+		$content_header = $database->escape_value($this->content_header);
+		$content = $database->escape_value($this->content);
+		$box1_header = $database->escape_value($this->box1_header);
+		$box1_content = $database->escape_value($this->box1_content);
+		$box2_header = $database->escape_value($this->box2_header);
+		$box2_content = $database->escape_value($this->box2_content);
+		$box3_header = $database->escape_value($this->box3_header);
+		$box3_content = $database->escape_value($this->box3_content);
+		$footer = $database->escape_value($this->footer);
+		$count = $database->escape_value($this->count);
+		$one = $database->escape_value($this->one);
+		$two = $database->escape_value($this->two);
+		$three = $database->escape_value($this->three);
+		$four = $database->escape_value($this->four);
+		$five = $database->escape_value($this->five);
+		$six = $database->escape_value($this->six);
+		$complete = $database->escape_value($this->complete);
+		$review = $database->escape_value($this->review);
+		$from_id = $database->escape_value($this->from_id);
+		$id = $database->escape_value($this->id);
+		
+		
 		 
-		$sql  = "UPDATE clientlp SET client_name='{$client_name}', website_url='{$website_url}', ";
-		$sql .= "start_date='{$start_date}', expire_date='{$expire_date}', ";
-		$sql .= "email='{$email}', notes='{$notes}', ";
-		$sql .= "city='{$city}', state='{$state}', ";
-		$sql .= "zip_code='{$zip_code}', google_ad='{$google_ad}', ";
-		$sql .= "google_ad_setup='{$google_ad_setup}', page_complete='{$page_complete}', renewing_page='{$renewing_page}', leads='{$leads}' ";
-		$sql .= "WHERE id={$id} && salesrep_id={$salesrep_id}";
+		$sql  = "UPDATE clientlp_content SET clientlp_id='{$clientlp_id}', salesrep_id='{$salesrep_id}', temp_salesrep_id='{$temp_salesrep_id}', ";
+		$sql .= "title='{$title}', content_header='{$content_header}', content='{$content}', ";
+		$sql .= "complete='{$complete}', review='{$review}', from_id='{$clientlp_id}', ";
+		$sql .= "box1_header='{$box1_header}' ,box1_content='{$box1_content}', box2_header='{$box2_header}', box2_content='{$box2_content}', box3_header='{$box3_header}', box3_content='{$box3_content}', footer='{$footer}', ";
+		$sql .= "count='{$count}' ,one='{$one}', two='{$two}', three='{$three}', four='{$four}', five='{$five}', six='{$six}' ";
+		$sql .= "WHERE id={$id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;

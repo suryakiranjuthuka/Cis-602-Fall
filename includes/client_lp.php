@@ -12,7 +12,6 @@ class ClientLp extends DatabaseObject{
 	public $t_o_c;
 	public $p_t;
 	public $leads;
-	public $hidden;
 
 	
 	public function create_c_lp_template_info(){
@@ -36,29 +35,17 @@ class ClientLp extends DatabaseObject{
 	public function update_c_lp_template_info(){
 		global $database;
 		$client_name = $database->escape_value($this->client_name);
-		$website_url = $database->escape_value($this->website_url);
-		$start_date = $database->escape_value($this->start_date);
-		$expire_date = $database->escape_value($this->expire_date);
+		$salesrep_id = $database->escape_value($this->salesrep_id);
 		$email = $database->escape_value($this->email);
-		$notes = $database->escape_value($this->notes);
-		$city = $database->escape_value($this->city);
-		$state = $database->escape_value($this->state);
-		$zip_code = $database->escape_value($this->zip_code);
-		$google_ad = $database->escape_value($this->google_ad);
-		$google_ad_setup = $database->escape_value($this->google_ad_setup);
-		$page_complete = $database->escape_value($this->page_complete);
-		$renewing_page = $database->escape_value($this->renewing_page);
+		$t_o_c = $database->escape_value($this->t_o_c);
+		$p_t = $database->escape_value($this->p_t);
 		$leads = $database->escape_value($this->leads);
 		$id = $database->escape_value($this->id);
-		$salesrep_id = $database->escape_value($this->salesrep_id);
 		 
-		$sql  = "UPDATE clientlp SET client_name='{$client_name}', website_url='{$website_url}', ";
-		$sql .= "start_date='{$start_date}', expire_date='{$expire_date}', ";
-		$sql .= "email='{$email}', notes='{$notes}', ";
-		$sql .= "city='{$city}', state='{$state}', ";
-		$sql .= "zip_code='{$zip_code}', google_ad='{$google_ad}', ";
-		$sql .= "google_ad_setup='{$google_ad_setup}', page_complete='{$page_complete}', renewing_page='{$renewing_page}', leads='{$leads}' ";
-		$sql .= "WHERE id={$id} && salesrep_id={$salesrep_id}";
+		$sql  = "UPDATE clientlp SET client_name='{$client_name}', salesrep_id='{$salesrep_id}', ";
+		$sql .= "email='{$email}', t_o_c='{$t_o_c}', ";
+		$sql .= "p_t='{$p_t}', leads='{$leads}' ";
+		$sql .= "WHERE id={$id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;
