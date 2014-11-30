@@ -13,6 +13,9 @@
 #eae9e6  :  BORDER
 */
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300, 400,600);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
 /**
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
  * http://cssreset.com
@@ -169,16 +172,9 @@ box-shadow: 0 0 5px grey;
 
 
 /*---------------------------	Layout Styles	---------------------------*/
-#xyz{
+body{
+	font-family: 'Open Sans', 'Lato', sans-serif;
 	background-color: #EDEff3;
-}
-
-#xyz body{
-	position: relative;
-	width:1000px;
-	margin:0 auto;
-	background-color: #EDEff3;
-	
 }
 
 p{
@@ -187,32 +183,55 @@ p{
 }
 
 /*-------------------------	Header Styles	---------------------------*/
-#xyz header{
-	height:90px;
+header{
 	background-color: #7A1249;
+	z-index: 10000000;
 	position: relative;
-	font-size: 34px;
-	text-align: center;
+}
+
+header #mainTitle{
 	color: white;
-	text-transform: uppercase;
+	font-family: 'Lato';
+	font-size:45px;
+	text-align: center;
+	padding: 25px 0;
+	font-weight: 300;
 }
 
-#xyz header div{
-	padding-top: 35px;
+
+
+/*-------------------------	Content Styles	---------------------------*/
+#mainContentContainer{
+	text-align: center;
+	background-color: white;
+	padding: 70px 0 60px;
+	z-index: 10;
+	position: relative;
 }
 
-#xyz #copy{
+#mainContentH1{
+	font-size: 30px;
+	padding-bottom: 10px;
+	font-weight: 300;
+	color: #0a465b;
+	text-transform: capitalize;
+}
+
+#mainContent{
 	text-align: center;
 	width: 800px;
 	margin: 0 auto;
-	color: grey;
+	color: #9caeb4;
 	font-size: 18px;
-	padding: 90px 0 50px;
+	font-weight: 300;
+	border-top:2px solid #FFA500;
+	padding-top: 20px;
 }
 
 .blocks {
 	width: 1000px;
-	margin: auto;
+	height: 450px;
+	margin: 30px auto 20px;
 }
 
 
@@ -260,13 +279,9 @@ p{
 	font-size: 27px;
 	padding: 25px 20px 25px;
 	box-sizing: border-box;
-	/* color: #0a465b; */
-	/* margin-bottom: 10px; */
-	/* border-bottom: 2px #FDB530 solid; */
 	text-align: center;
 	margin-top: 0px;
 	font-variant: small-caps;
-	/* background-color: #FDB530 */
 	background-color: #107698;
 	width: 100%;
 	border-top-left-radius: 2px;
@@ -283,14 +298,20 @@ p{
 }
 
 
-#xyz footer{
-	height:90px;
-	background-color: grey;
+footer{
+	height:95px;
+	background-color: #504f4f;
 	position: relative;
-	font-size: 34px;
 	text-align: center;
 	color: white;
 	text-transform: uppercase;
+}
+
+footer p{
+	font-size: 18px;
+	text-align: center;
+	color: white;
+	padding-top: 40px;
 }
 
 
