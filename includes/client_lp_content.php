@@ -46,10 +46,11 @@ class ClientLpContent extends DatabaseObject{
 		$box2_content = $database->escape_value($this->box2_content);
 		$box3_header = $database->escape_value($this->box3_header);
 		$box3_content = $database->escape_value($this->box3_content);
+		$from_id = $database->escape_value($this->from_id);
 		$footer = $database->escape_value($this->footer);
 		
 		
-		$sql="INSERT INTO clientlp_content (clientlp_id, salesrep_id, temp_salesrep_id, title, content_header, content, box1_header, box1_content, box2_header, box2_content, box3_header, box3_content, footer) VALUES ('{$clientlp_id}', '{$salesrep_id}', '{$temp_salesrep_id}', '{$title}', '{$content_header}', '{$content}', '{$box1_header}', '{$box1_content}', '{$box2_header}', '{$box2_content}', '{$box3_header}', '{$box3_content}', '{$footer}')";
+		$sql="INSERT INTO clientlp_content (clientlp_id, salesrep_id, temp_salesrep_id, title, content_header, content, box1_header, box1_content, box2_header, box2_content, box3_header, box3_content, from_id, footer) VALUES ('{$clientlp_id}', '{$salesrep_id}', '{$temp_salesrep_id}', '{$title}', '{$content_header}', '{$content}', '{$box1_header}', '{$box1_content}', '{$box2_header}', '{$box2_content}', '{$box3_header}', '{$box3_content}', '{$from_id}', '{$footer}')";
 		
 		if($database->query($sql)){
 			return $database->insert_id();	
@@ -85,13 +86,14 @@ class ClientLpContent extends DatabaseObject{
 		$complete = $database->escape_value($this->complete);
 		$review = $database->escape_value($this->review);
 		$from_id = $database->escape_value($this->from_id);
+		$time_created = $database->escape_value($this->time_created);
 		$id = $database->escape_value($this->id);
 		
 		
 		 
 		$sql  = "UPDATE clientlp_content SET clientlp_id='{$clientlp_id}', salesrep_id='{$salesrep_id}', temp_salesrep_id='{$temp_salesrep_id}', ";
-		$sql .= "title='{$title}', content_header='{$content_header}', content='{$content}', ";
-		$sql .= "complete='{$complete}', review='{$review}', from_id='{$clientlp_id}', ";
+		$sql .= "title='{$title}', content_header='{$content_header}', content='{$content}', time_created='{$time_created}', ";
+		$sql .= "complete='{$complete}', review='{$review}', ";
 		$sql .= "box1_header='{$box1_header}' ,box1_content='{$box1_content}', box2_header='{$box2_header}', box2_content='{$box2_content}', box3_header='{$box3_header}', box3_content='{$box3_content}', footer='{$footer}', ";
 		$sql .= "count='{$count}' ,one='{$one}', two='{$two}', three='{$three}', four='{$four}', five='{$five}', six='{$six}' ";
 		$sql .= "WHERE id={$id}";
@@ -102,29 +104,18 @@ class ClientLpContent extends DatabaseObject{
 	
 	
 	
-	public static function hide_c_lp_template_info($c_lp_id="",$current_user_id="", $c_lp_hide=""){
+	public static function find_all_user_c_lp_content($id=""){
 		global $database;
-		$sql  = "UPDATE clientlp SET hidden={$c_lp_hide} WHERE id={$c_lp_id} && salesrep_id={$current_user_id}";
-		
-		$database->query($sql);
-		return ($database->affected_rows() == 1) ? true : false;
-	}
-	
-	
-	
-	public static function find_all_user_c_lp($id=""){
-		global $database;
-		$sql = "SELECT * from clientlp WHERE salesrep_id='{$id}' && hidden=0 ORDER BY id DESC ";
+		$sql = "SELECT * from clientlp_content WHERE salesrep_id='{$id}' ORDER BY id DESC ";
 		
 		return static::find_by_sql($sql);	
 	}
 	
-	
-	
-	public static function search_c_lp($search_term="", $id="", $hidden=0){
+
+		public static function search_c_lp($search_term="", $id=""){
 		global $database;
-		$sql = "SELECT * FROM  clientlp WHERE ((client_name LIKE '%$search_term%') OR (start_date LIKE '%$search_term%') OR (expire_date LIKE '%$search_term%') OR (email LIKE '%$search_term%') OR (website_url LIKE '%$search_term%') OR (city LIKE '%$search_term%') OR (state LIKE '%$search_term%') OR (zip_code LIKE '%$search_term%'))";
-		$sql .= " AND ((salesrep_id={$id}) AND (hidden={$hidden})) ORDER BY id DESC";
+		$sql = "SELECT * FROM  clientlp_content WHERE (id LIKE '%$search_term%')";
+		$sql .= " AND (salesrep_id={$id}) ORDER BY id DESC";
 		
 		return static::find_by_sql($sql);
 	}

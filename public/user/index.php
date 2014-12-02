@@ -21,7 +21,7 @@ require_once("../../includes/initialize.php");
 <a id="TOP"></a>
 
 <header class="bottomShadow">
-	<div id="headerImage"><img src="../site_images/plum_logo_name.png" height="81px"></div>
+	<div id="headerImage" style="color:lightgrey; font-size:25px; padding-top:27px; position:relative; left:-10px;">Provanance</div>
     <div class="transition" id="loginLink"><a href="login.php" target="_blank">LOGIN</a></div>
 </header>
 
@@ -81,7 +81,7 @@ require_once("../../includes/initialize.php");
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
               <a href="info_template1.php"><button class="selectButton" language="javascript" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" ><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
-              <a href="sample_template1.php" target="_blank"><div class="viewButton">VIEW</div></a>
+              <a href="sample_template1.php?id=1" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
      </div><!-- END of CLIENT LP Container-->
 	
@@ -94,7 +94,7 @@ require_once("../../includes/initialize.php");
               <div class="dot1"></div>
           </div> 
           <div class="templateAllShadow show_template"><a href="info_template2.php" target="_blank"><!-- Template Image -->
-		<img class="templateImage" height="220" src="../template_images/08.png"></a>
+		<img class="templateImage" height="220" src="../template_images/09.png"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
               <a href="info_template2.php"><button class="selectButton" language="javascript" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" ><div class="insideSelectButton">SELECT</div></button></a>
@@ -113,7 +113,7 @@ require_once("../../includes/initialize.php");
               <div class="dot1"></div>
           </div> 
           <div class="templateAllShadow show_template"><a href="info_template3.php" target="_blank"><!-- Template Image -->
-		<img class="templateImage" height="220" src="../template_images/08.png"></a>
+		<img class="templateImage" height="220" src="../template_images/10.png"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
               <a href="info_template3.php"><button class="selectButton" language="javascript" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" ><div class="insideSelectButton">SELECT</div></button></a>

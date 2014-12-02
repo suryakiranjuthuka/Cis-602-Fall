@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 	$sucess_c_lp = $client_landing_page->create_c_lp_template_info();
 	
 	$edit_c_lp->clientlp_id = $sucess_c_lp;
-//	$edit_c_lp->salesrep_id = trim($_POST['sales_rep_id']);
+	$edit_c_lp->from_id = 0;
 	$edit_c_lp->title = "Company Name";
 	$edit_c_lp->content_header = "What We Do";
 	$edit_c_lp->content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";

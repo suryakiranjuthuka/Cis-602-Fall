@@ -23,7 +23,10 @@ if(isset($_POST['submitDesignPopup'])){
 		$current_clp_content->review = 0;
 	}
 	
-//	$current_clp_content->time_created;
+	if(isset($_POST['dateTime'])){
+		$current_clp_content->time_created = trim($_POST['dateTime']);
+	}
+	
 	$current_clientlp->salesrep_id = $current_clp_content->temp_salesrep_id;
 	$current_clp_content->salesrep_id = $current_clp_content->temp_salesrep_id;
 	
@@ -32,9 +35,9 @@ if(isset($_POST['submitDesignPopup'])){
 	
 	$sucess_c_lp_content = $current_clp_content->update_c_lp_content_info();
 	$sucess_c_lp = $current_clientlp->update_c_lp_template_info();
-//	header("Location: template1.php?main_clientlp_edit_id=". $mcei);
+	header("Location: user.php");
 }
-
+ 
 
 if(isset($_POST['form1'])){
 	if(isset($_POST['title'])){
@@ -240,7 +243,7 @@ if(isset($_POST['form6'])){
 
 		
 		<hr></hr>
-		<a class="md-trigger" data-modal="finalPopup" ><div class="transition1 bottomShadow" id="submitDesign">i am done!</br> submit design</div></a>
+		<a id="submitDesignClick" class="md-trigger" data-modal="finalPopup" ><div class="transition1 bottomShadow" id="submitDesign">i am done!</br> submit design</div></a>
 		<hr></hr>
 		<a href="info_template1.php"><div class="transition1 bottomShadow" id="resetDesign">start over</div></a>
 		<hr></hr>
@@ -304,9 +307,11 @@ if(isset($_POST['form6'])){
                     <form id="finishDesign" method="post" action="template1.php?main_clientlp_edit_id=<?php echo $mcei; ?>">
 						<h3>Client Name : <?php echo $current_clientlp->client_name; ?></h3>
 						<h3>Client Email : <?php echo $current_clientlp->email; ?></h3>
-
-						<input type="radio" name="completereview" value="review" <?php if($current_clp_content->review == 1){echo " checked";} ?>>Still Reviewing </br>
+						</br><hr></hr>
+						<input type="hidden" value="" id="dateTime" name="dateTime">
+						<input type="radio" name="completereview" value="review" <?php if($current_clp_content->review == 1){echo " checked";} ?>>Still Reviewing
 						<input type="radio" name="completereview" value="complete" <?php if($current_clp_content->complete == 1){echo " checked";} ?>>Page Completed
+						<hr></hr>
 						
 						<div class="loader" id="loader_form"></div><!--LOADER-->
                         <input name="submitDesignPopup" id="submitDesignPopup" type="submit" value="submit"></br>
@@ -395,8 +400,22 @@ if(isset($_POST['form6'])){
 <script type="text/javascript">
 	
 
-
-
+	
+	$("#submitDesignClick").click(function() {
+		var date = new Date()
+		var currentDay = date.toDateString()
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var ampm = hours >= 12 ? 'pm' : 'am';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // the hour '0' should be '12'
+		minutes = minutes < 10 ? '0'+minutes : minutes;
+		var currentTime = hours + ':' + minutes + ' ' + ampm;
+		
+		$("#dateTime")
+		.attr("value",currentDay+", "+currentTime);
+		
+	});
 
 	
 	

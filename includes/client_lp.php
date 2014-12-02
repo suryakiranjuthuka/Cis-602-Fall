@@ -12,6 +12,7 @@ class ClientLp extends DatabaseObject{
 	public $t_o_c;
 	public $p_t;
 	public $leads;
+	public $hidden;
 
 	
 	public function create_c_lp_template_info(){
@@ -63,23 +64,23 @@ class ClientLp extends DatabaseObject{
 	
 	
 	
+//	public static function find_all_user_c_lp($id=""){
+//		global $database;
+//		$sql = "SELECT * from clientlp WHERE salesrep_id='{$id}' && hidden=0 ORDER BY id DESC ";
+//		
+//		return static::find_by_sql($sql);	
+//	}
+	
+	
 	public static function find_all_user_c_lp($id=""){
 		global $database;
-		$sql = "SELECT * from clientlp WHERE salesrep_id='{$id}' && hidden=0 ORDER BY id DESC ";
+		$sql = "SELECT * from clientlp WHERE id='{$id}' ";
 		
 		return static::find_by_sql($sql);	
 	}
 	
 	
-	
-	public static function search_c_lp($search_term="", $id="", $hidden=0){
-		global $database;
-		$sql = "SELECT * FROM  clientlp WHERE ((client_name LIKE '%$search_term%') OR (start_date LIKE '%$search_term%') OR (expire_date LIKE '%$search_term%') OR (email LIKE '%$search_term%') OR (website_url LIKE '%$search_term%') OR (city LIKE '%$search_term%') OR (state LIKE '%$search_term%') OR (zip_code LIKE '%$search_term%'))";
-		$sql .= " AND ((salesrep_id={$id}) AND (hidden={$hidden})) ORDER BY id DESC";
-		
-		return static::find_by_sql($sql);
-	}
-	
+
 	
 	
 	
