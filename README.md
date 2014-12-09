@@ -1,4 +1,5 @@
-PLUMDM-Help
+CIS - 602
 ===========
 
-A Sales Selection Website for Plum Direct Marketing
+A project for the class
+Project live at : http://www.carissabroadbent.com/surya_cis_602_project/public/user/index.php
