@@ -21,7 +21,7 @@ require_once("../../includes/initialize.php");
 <a id="TOP"></a>
 
 <header class="bottomShadow">
-	<div id="headerImage" style="color:lightgrey; font-size:25px; padding-top:27px; position:relative; left:-10px;">Provanance</div>
+	<div id="headerImage" style="color:lightgrey; font-size:25px; padding-top:27px; position:relative; left:-10px;">Provenance</div>
     <div class="transition" id="loginLink"><a href="login.php" target="_blank">LOGIN</a></div>
 </header>
 

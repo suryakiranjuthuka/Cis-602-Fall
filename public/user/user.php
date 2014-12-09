@@ -76,7 +76,7 @@ if(isset($_GET['c_lp_id'])){
 
 <nav class="rightShadow" id="secondNav">
 <div class="transition" id="userImage"><a href="index.php"><img height="100" src="<?php if($current_user->user_dp_url !== NULL){echo $current_user->user_dp_url;} else{ echo "../site_images/default_user.png";} ?>"></a></div>
-<h1 class="textShadow"><a href="user.php">CIS 602 Provanance</a></h1>
+<h1 class="textShadow"><a href="user.php">CIS 602 Provenance</a></h1>
 <div id="secondNavIcons">
     <a title="Edit Templates"><img class="transition1" height="30" src="../site_images/settings.png"></a>
     <a title="Upload Template"><img class="transition1" height="30"src="../site_images/upload.png"></a>
@@ -203,7 +203,7 @@ if(isset($_GET['c_lp_id'])){
                 </div>
                 <a href="process_template1.php?main_clientlp_edit_id=<?php echo $client_lp_content->id; ?>&temp_salesrep_id=<?php echo $client_lp_content->salesrep_id; ?>" target="_blank" title="Edit" ><button class="editButton transition1" style="border-style:none; outline:0; border:0; background:none;"><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="sample_template1.php?main_clientlp_edit_id=<?php echo $client_lp_content->id; ?>" target="_blank" title="View" id="c_lp_hide"><img alt="View" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                <a href="sample_template1.php?id=<?php echo $client_lp_content->id; ?>" target="_blank" title="View" id="c_lp_hide"><img alt="View" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
         </div>
 		
